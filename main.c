@@ -1,5 +1,8 @@
 #include "Header.h"
 
+Case matrice[NB_CASE_Y][NB_CASE_X];
+
+
 int main(int argc, char** argv)
 {
 	/*********************Déclaration de toutes les variables ***********************/
@@ -18,11 +21,8 @@ int main(int argc, char** argv)
 	if (rendu == NULL){	printf("\nImpossible de creer le rendu :  %s\n", SDL_GetError());         exit(EXIT_FAILURE);	}
 	SDL_SetRenderDrawColor(rendu, 0, 0, 220, 255); //la fenêtre est bleue
 
-	initMatrice();
-	dessineMat(rendu, texture);
-
-	texture = IMG_LoadTexture(rendu, "./images/case_1.png");
-	if (texture == NULL){printf("\nProbleme sur la texture\n");         exit(EXIT_FAILURE);	}
+	texture = NULL;
+	initMat();
 
 
 	///********************* La boucle des événements ******************************/
@@ -72,6 +72,8 @@ int main(int argc, char** argv)
 		}
 		/********************* Appel de la fonction dessineScene() *********************/
 		dessineScene(rendu, texture);
+		SDL_RenderPresent(rendu);
+		scrollMat();
 		SDL_Delay(30);  //Attente de 30 ms avant de gérer le prochain événement
 	}
 
