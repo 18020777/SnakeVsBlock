@@ -14,12 +14,18 @@
 #define BOULE_SIZE 20
 
 //STRUCTURES :
-typedef struct { int x; int y; int val; } Case;
+struct sCase
+{
+	int x, y, valeur;
+};
+typedef struct sCase Case;
 
 //FONCTIONS :
 void dessineScene(SDL_Renderer *rendu, SDL_Texture *texture);
-void initMatrix(Case** matmat);
-void dessineCase();
-void dessineMatrice(Case* Matrix);
+void initMat(void);
+void dessineCase(int lig, int col, SDL_Renderer*rendu, SDL_Texture*texture);
+void dessineMat(SDL_Renderer *rendu, SDL_Texture *texture);
+void scrollMat(void);
+
 //VARIABLES :
 
